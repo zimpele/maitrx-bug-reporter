@@ -5,20 +5,17 @@ Bug Reporter Widget für Vite/React Apps — meldet Bugs direkt in das Maitrx Su
 ## Installation
 
 ```bash
-bun add file:../maitrx-bug-reporter
-# oder
-npm install ../maitrx-bug-reporter
+bun add github:zimpele/maitrx-bug-reporter
 ```
-
-> Das Package wird lokal eingebunden. Stelle sicher, dass der Pfad zum `maitrx-bug-reporter`-Verzeichnis stimmt.
 
 ---
 
-## Schritt 1 — Widget einbinden
+## Integration (2 Schritte)
 
-Wrapping der App mit `BugReporterProvider` in `main.tsx`:
+### Schritt 1 — Provider einbinden
 
 ```tsx
+// main.tsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
@@ -26,91 +23,78 @@ import { BugReporterProvider } from '@maitrx/bug-reporter'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BugReporterProvider
-      config={{
-        endpoint: 'DEIN_ENDPOINT',
-        token: 'DEIN_TOKEN',
-        enabled: true,
-        // Optional: eingeloggten User mitschicken
-        getUser: () => ({
-          name: currentUser.name,
-          email: currentUser.email,
-        }),
-      }}
-    >
+    <BugReporterProvider>
       <App />
     </BugReporterProvider>
   </React.StrictMode>
 )
 ```
 
-Ein 🐛-Button erscheint automatisch unten rechts. Nutzer können damit Bugs melden.
+Das ist alles — kein Token, kein Router-Setup, keine weitere Konfiguration nötig.
+
+### Schritt 2 — Mit Maitrx verbinden
+
+Öffne in deiner App die URL `/bug-reporter`. Die Settings-Seite erscheint automatisch.
+
+1. Klick auf **"Mit Maitrx anmelden"**
+2. Im Popup: Mit Maitrx-Konto einloggen und Projekt auswählen
+3. Popup schließt sich — fertig ✅
+
+Der 🐛-Button erscheint ab sofort auf allen Seiten (außer `/bug-reporter`).
 
 ---
 
-## Schritt 2 — Settings-Seite einbinden
+## Was passiert auf `/bug-reporter`?
 
-Füge die `BugReporterSettings`-Komponente auf einer Admin-Seite ein (z.B. `/admin/settings`):
+Die Route `/bug-reporter` wird automatisch vom Plugin abgefangen — kein Router-Eintrag nötig. Dort kann ein Admin:
+
+- Die Verbindung zu Maitrx herstellen
+- Den Bug Reporter aktivieren / deaktivieren
+- Die Verbindung trennen oder neu verbinden
+
+---
+
+## Optionen
 
 ```tsx
-import { BugReporterSettings } from '@maitrx/bug-reporter'
-
-export default function AdminSettingsPage() {
-  return (
-    <div>
-      <h1>Einstellungen</h1>
-      <BugReporterSettings />
-    </div>
-  )
-}
+<BugReporterProvider
+  getUser={() => ({
+    name: currentUser.name,   // Optional: User-Info automatisch mitschicken
+    email: currentUser.email,
+  })}
+>
+  <App />
+</BugReporterProvider>
 ```
 
-Über die Settings-Seite kann ein Admin:
-- **Mit Maitrx anmelden** — Popup öffnet sich, Login, Projekt auswählen
-- Token wird automatisch gespeichert (localStorage)
-- Bug Reporter aktivieren / deaktivieren
-- Verbindung trennen
-
----
-
-## Schritt 3 — Projekt in Maitrx verbinden
-
-1. Admin öffnet die Settings-Seite in eurer App
-2. Klick auf **"Mit Maitrx anmelden"**
-3. Im Popup: Mit Maitrx-Konto einloggen
-4. Projekt auswählen
-5. Popup schließt sich — fertig ✅
-
-Token und Endpoint werden automatisch konfiguriert.
-
----
-
-## Manuelle Konfiguration (alternativ zu Schritt 3)
-
-Falls du den Token lieber manuell einträgst:
-
-1. Im Maitrx-Tool: **Einstellungen → Projekte → "..." → Bug Reporter**
-2. Token generieren und kopieren
-3. Endpoint-URL kopieren
-4. Token und Endpoint direkt als Props an `BugReporterProvider` übergeben
-
----
-
-## Config-Optionen
-
-| Option | Typ | Erforderlich | Beschreibung |
-|--------|-----|--------------|--------------|
-| `endpoint` | `string` | Ja | Edge Function URL aus den Maitrx-Projekteinstellungen |
-| `token` | `string` | Ja | API-Token aus den Maitrx-Projekteinstellungen |
-| `enabled` | `boolean` | Nein | Widget anzeigen (default: `true`) |
-| `getUser` | `() => { name?, email? }` | Nein | Eingeloggten User automatisch mitschicken |
+| Option | Typ | Beschreibung |
+|--------|-----|--------------|
+| `getUser` | `() => { name?, email? }` | Eingeloggten User automatisch mitschicken |
 
 ---
 
 ## Was wird beim Bug-Report mitgeschickt?
 
-- **Titel** (vom Nutzer eingegeben)
-- **Beschreibung** (optional, vom Nutzer)
+- **Titel** (vom Nutzer eingegeben, Pflichtfeld)
+- **Beschreibung** (optional)
 - **Screenshot** (automatisch via html2canvas)
 - **Browser-Info** (User-Agent, URL, Auflösung, Sprache)
 - **User-Info** (Name + E-Mail, falls `getUser` konfiguriert)
+
+---
+
+## Update
+
+Nach Änderungen am Plugin-Code immer neu bauen und pushen:
+
+```bash
+cd maitrx-bug-reporter
+bun run build
+git add -A && git commit -m "update" && git push
+```
+
+In der externen App dann:
+
+```bash
+bun add github:zimpele/maitrx-bug-reporter
+```
