@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useBugReporter } from './BugReporterProvider';
 import { BugReporterForm } from './BugReporterForm';
 
-const styles = {
+const s = {
   fab: {
     position: 'fixed' as const,
     bottom: '24px',
@@ -19,8 +19,8 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
-    transition: 'transform 0.15s ease, box-shadow 0.15s ease',
     fontSize: '20px',
+    transition: 'transform 0.15s ease',
   },
   overlay: {
     position: 'fixed' as const,
@@ -70,7 +70,6 @@ const styles = {
 export function BugReporterWidget() {
   const { open, setOpen } = useBugReporter();
   const [submitted, setSubmitted] = useState(false);
-  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) setSubmitted(false);
@@ -84,34 +83,27 @@ export function BugReporterWidget() {
   return (
     <>
       <button
-        style={styles.fab}
+        style={s.fab}
         onClick={() => setOpen(!open)}
         title="Bug melden"
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.08)';
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
-        }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.08)'; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
       >
         🐛
       </button>
 
       {open && (
         <>
-          <div style={styles.overlay} onClick={() => setOpen(false)} />
-          <div style={styles.dialog} ref={dialogRef}>
-            <div style={styles.header}>
-              <span style={styles.headerTitle}>🐛 Bug melden</span>
-              <button style={styles.closeBtn} onClick={() => setOpen(false)}>×</button>
+          <div style={s.overlay} onClick={() => setOpen(false)} />
+          <div style={s.dialog}>
+            <div style={s.header}>
+              <span style={s.headerTitle}>🐛 Bug melden</span>
+              <button style={s.closeBtn} onClick={() => setOpen(false)}>×</button>
             </div>
-
             {submitted ? (
               <div style={{ padding: '32px 16px', textAlign: 'center' }}>
                 <div style={{ fontSize: '32px', marginBottom: '8px' }}>✅</div>
-                <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>
-                  Danke! Bug wurde gemeldet.
-                </p>
+                <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Danke! Bug wurde gemeldet.</p>
               </div>
             ) : (
               <BugReporterForm onSubmitted={handleSubmitted} />

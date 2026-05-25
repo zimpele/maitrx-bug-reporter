@@ -97,7 +97,7 @@ export function BugReporterForm({ onSubmitted }: BugReporterFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!title.trim() || !config) return;
 
     setIsSubmitting(true);
     setError('');

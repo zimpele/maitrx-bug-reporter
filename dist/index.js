@@ -1,5 +1,6 @@
-import ie, { useState as E, useRef as se, useEffect as J, createContext as le, useContext as ce, useCallback as de } from "react";
-var C = { exports: {} }, T = {};
+import ue, { useState as y, useEffect as P, createContext as fe, useContext as pe } from "react";
+import { createPortal as H } from "react-dom";
+var D = { exports: {} }, k = {};
 /**
  * @license React
  * react-jsx-runtime.production.js
@@ -9,29 +10,29 @@ var C = { exports: {} }, T = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var $;
-function ue() {
-  if ($) return T;
-  $ = 1;
-  var n = Symbol.for("react.transitional.element"), o = Symbol.for("react.fragment");
-  function a(s, l, u) {
-    var f = null;
-    if (u !== void 0 && (f = "" + u), l.key !== void 0 && (f = "" + l.key), "key" in l) {
-      u = {};
-      for (var h in l)
-        h !== "key" && (u[h] = l[h]);
-    } else u = l;
-    return l = u.ref, {
+var X;
+function me() {
+  if (X) return k;
+  X = 1;
+  var n = Symbol.for("react.transitional.element"), i = Symbol.for("react.fragment");
+  function o(c, a, s) {
+    var g = null;
+    if (s !== void 0 && (g = "" + s), a.key !== void 0 && (g = "" + a.key), "key" in a) {
+      s = {};
+      for (var f in a)
+        f !== "key" && (s[f] = a[f]);
+    } else s = a;
+    return a = s.ref, {
       $$typeof: n,
-      type: s,
-      key: f,
-      ref: l !== void 0 ? l : null,
-      props: u
+      type: c,
+      key: g,
+      ref: a !== void 0 ? a : null,
+      props: s
     };
   }
-  return T.Fragment = o, T.jsx = a, T.jsxs = a, T;
+  return k.Fragment = i, k.jsx = o, k.jsxs = o, k;
 }
-var O = {};
+var T = {};
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -41,42 +42,42 @@ var O = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var V;
-function fe() {
-  return V || (V = 1, process.env.NODE_ENV !== "production" && function() {
+var Z;
+function ge() {
+  return Z || (Z = 1, process.env.NODE_ENV !== "production" && function() {
     function n(e) {
       if (e == null) return null;
       if (typeof e == "function")
-        return e.$$typeof === ne ? null : e.displayName || e.name || null;
+        return e.$$typeof === le ? null : e.displayName || e.name || null;
       if (typeof e == "string") return e;
       switch (e) {
-        case w:
+        case R:
           return "Fragment";
-        case X:
-          return "Profiler";
-        case P:
-          return "StrictMode";
-        case K:
-          return "Suspense";
         case ee:
+          return "Profiler";
+        case A:
+          return "StrictMode";
+        case oe:
+          return "Suspense";
+        case ae:
           return "SuspenseList";
-        case re:
+        case se:
           return "Activity";
       }
       if (typeof e == "object")
         switch (typeof e.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
         ), e.$$typeof) {
-          case v:
+          case S:
             return "Portal";
-          case Z:
+          case re:
             return e.displayName || "Context";
-          case H:
+          case te:
             return (e._context.displayName || "Context") + ".Consumer";
-          case Q:
+          case ne:
             var r = e.render;
             return e = e.displayName, e || (e = r.displayName || r.name || "", e = e !== "" ? "ForwardRef(" + e + ")" : "ForwardRef"), e;
-          case te:
+          case ie:
             return r = e.displayName || null, r !== null ? r : n(e.type) || "Memo";
           case I:
             r = e._payload, e = e._init;
@@ -87,28 +88,28 @@ function fe() {
         }
       return null;
     }
-    function o(e) {
+    function i(e) {
       return "" + e;
     }
-    function a(e) {
+    function o(e) {
       try {
-        o(e);
+        i(e);
         var r = !1;
       } catch {
         r = !0;
       }
       if (r) {
         r = console;
-        var i = r.error, c = typeof Symbol == "function" && Symbol.toStringTag && e[Symbol.toStringTag] || e.constructor.name || "Object";
-        return i.call(
+        var l = r.error, d = typeof Symbol == "function" && Symbol.toStringTag && e[Symbol.toStringTag] || e.constructor.name || "Object";
+        return l.call(
           r,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          c
-        ), o(e);
+          d
+        ), i(e);
       }
     }
-    function s(e) {
-      if (e === w) return "<>";
+    function c(e) {
+      if (e === R) return "<>";
       if (typeof e == "object" && e !== null && e.$$typeof === I)
         return "<...>";
       try {
@@ -118,49 +119,49 @@ function fe() {
         return "<...>";
       }
     }
-    function l() {
+    function a() {
       var e = N.A;
       return e === null ? null : e.getOwner();
     }
-    function u() {
+    function s() {
       return Error("react-stack-top-frame");
     }
-    function f(e) {
-      if (W.call(e, "key")) {
+    function g(e) {
+      if ($.call(e, "key")) {
         var r = Object.getOwnPropertyDescriptor(e, "key").get;
         if (r && r.isReactWarning) return !1;
       }
       return e.key !== void 0;
     }
-    function h(e, r) {
-      function i() {
-        M || (M = !0, console.error(
+    function f(e, r) {
+      function l() {
+        U || (U = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
           r
         ));
       }
-      i.isReactWarning = !0, Object.defineProperty(e, "key", {
-        get: i,
+      l.isReactWarning = !0, Object.defineProperty(e, "key", {
+        get: l,
         configurable: !0
       });
     }
-    function _() {
+    function p() {
       var e = n(this.type);
-      return Y[e] || (Y[e] = !0, console.error(
+      return V[e] || (V[e] = !0, console.error(
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), e = this.props.ref, e !== void 0 ? e : null;
     }
-    function p(e, r, i, c, A, B) {
-      var d = i.ref;
+    function b(e, r, l, d, O, B) {
+      var u = l.ref;
       return e = {
-        $$typeof: R,
+        $$typeof: C,
         type: e,
         key: r,
-        props: i,
-        _owner: c
-      }, (d !== void 0 ? d : null) !== null ? Object.defineProperty(e, "ref", {
+        props: l,
+        _owner: d
+      }, (u !== void 0 ? u : null) !== null ? Object.defineProperty(e, "ref", {
         enumerable: !1,
-        get: _
+        get: p
       }) : Object.defineProperty(e, "ref", { enumerable: !1, value: null }), e._store = {}, Object.defineProperty(e._store, "validated", {
         configurable: !1,
         enumerable: !1,
@@ -175,7 +176,7 @@ function fe() {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: A
+        value: O
       }), Object.defineProperty(e, "_debugTask", {
         configurable: !1,
         enumerable: !1,
@@ -183,98 +184,98 @@ function fe() {
         value: B
       }), Object.freeze && (Object.freeze(e.props), Object.freeze(e)), e;
     }
-    function x(e, r, i, c, A, B) {
-      var d = r.children;
-      if (d !== void 0)
-        if (c)
-          if (oe(d)) {
-            for (c = 0; c < d.length; c++)
-              b(d[c]);
-            Object.freeze && Object.freeze(d);
+    function v(e, r, l, d, O, B) {
+      var u = r.children;
+      if (u !== void 0)
+        if (d)
+          if (ce(u)) {
+            for (d = 0; d < u.length; d++)
+              x(u[d]);
+            Object.freeze && Object.freeze(u);
           } else
             console.error(
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
-        else b(d);
-      if (W.call(r, "key")) {
-        d = n(e);
-        var j = Object.keys(r).filter(function(ae) {
-          return ae !== "key";
+        else x(u);
+      if ($.call(r, "key")) {
+        u = n(e);
+        var _ = Object.keys(r).filter(function(de) {
+          return de !== "key";
         });
-        c = 0 < j.length ? "{key: someKey, " + j.join(": ..., ") + ": ...}" : "{key: someKey}", U[d + c] || (j = 0 < j.length ? "{" + j.join(": ..., ") + ": ...}" : "{}", console.error(
+        d = 0 < _.length ? "{key: someKey, " + _.join(": ..., ") + ": ...}" : "{key: someKey}", q[u + d] || (_ = 0 < _.length ? "{" + _.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
 React keys must be passed directly to JSX without using spread:
   let props = %s;
   <%s key={someKey} {...props} />`,
-          c,
           d,
-          j,
-          d
-        ), U[d + c] = !0);
+          u,
+          _,
+          u
+        ), q[u + d] = !0);
       }
-      if (d = null, i !== void 0 && (a(i), d = "" + i), f(r) && (a(r.key), d = "" + r.key), "key" in r) {
-        i = {};
+      if (u = null, l !== void 0 && (o(l), u = "" + l), g(r) && (o(r.key), u = "" + r.key), "key" in r) {
+        l = {};
         for (var F in r)
-          F !== "key" && (i[F] = r[F]);
-      } else i = r;
-      return d && h(
-        i,
+          F !== "key" && (l[F] = r[F]);
+      } else l = r;
+      return u && f(
+        l,
         typeof e == "function" ? e.displayName || e.name || "Unknown" : e
-      ), p(
+      ), b(
         e,
-        d,
-        i,
-        l(),
-        A,
+        u,
+        l,
+        a(),
+        O,
         B
       );
     }
-    function b(e) {
-      S(e) ? e._store && (e._store.validated = 1) : typeof e == "object" && e !== null && e.$$typeof === I && (e._payload.status === "fulfilled" ? S(e._payload.value) && e._payload.value._store && (e._payload.value._store.validated = 1) : e._store && (e._store.validated = 1));
+    function x(e) {
+      w(e) ? e._store && (e._store.validated = 1) : typeof e == "object" && e !== null && e.$$typeof === I && (e._payload.status === "fulfilled" ? w(e._payload.value) && e._payload.value._store && (e._payload.value._store.validated = 1) : e._store && (e._store.validated = 1));
     }
-    function S(e) {
-      return typeof e == "object" && e !== null && e.$$typeof === R;
+    function w(e) {
+      return typeof e == "object" && e !== null && e.$$typeof === C;
     }
-    var m = ie, R = Symbol.for("react.transitional.element"), v = Symbol.for("react.portal"), w = Symbol.for("react.fragment"), P = Symbol.for("react.strict_mode"), X = Symbol.for("react.profiler"), H = Symbol.for("react.consumer"), Z = Symbol.for("react.context"), Q = Symbol.for("react.forward_ref"), K = Symbol.for("react.suspense"), ee = Symbol.for("react.suspense_list"), te = Symbol.for("react.memo"), I = Symbol.for("react.lazy"), re = Symbol.for("react.activity"), ne = Symbol.for("react.client.reference"), N = m.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, W = Object.prototype.hasOwnProperty, oe = Array.isArray, z = console.createTask ? console.createTask : function() {
+    var h = ue, C = Symbol.for("react.transitional.element"), S = Symbol.for("react.portal"), R = Symbol.for("react.fragment"), A = Symbol.for("react.strict_mode"), ee = Symbol.for("react.profiler"), te = Symbol.for("react.consumer"), re = Symbol.for("react.context"), ne = Symbol.for("react.forward_ref"), oe = Symbol.for("react.suspense"), ae = Symbol.for("react.suspense_list"), ie = Symbol.for("react.memo"), I = Symbol.for("react.lazy"), se = Symbol.for("react.activity"), le = Symbol.for("react.client.reference"), N = h.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, $ = Object.prototype.hasOwnProperty, ce = Array.isArray, z = console.createTask ? console.createTask : function() {
       return null;
     };
-    m = {
+    h = {
       react_stack_bottom_frame: function(e) {
         return e();
       }
     };
-    var M, Y = {}, D = m.react_stack_bottom_frame.bind(
-      m,
-      u
-    )(), L = z(s(u)), U = {};
-    O.Fragment = w, O.jsx = function(e, r, i) {
-      var c = 1e4 > N.recentlyCreatedOwnerStacks++;
-      return x(
+    var U, V = {}, G = h.react_stack_bottom_frame.bind(
+      h,
+      s
+    )(), J = z(c(s)), q = {};
+    T.Fragment = R, T.jsx = function(e, r, l) {
+      var d = 1e4 > N.recentlyCreatedOwnerStacks++;
+      return v(
         e,
         r,
-        i,
+        l,
         !1,
-        c ? Error("react-stack-top-frame") : D,
-        c ? z(s(e)) : L
+        d ? Error("react-stack-top-frame") : G,
+        d ? z(c(e)) : J
       );
-    }, O.jsxs = function(e, r, i) {
-      var c = 1e4 > N.recentlyCreatedOwnerStacks++;
-      return x(
+    }, T.jsxs = function(e, r, l) {
+      var d = 1e4 > N.recentlyCreatedOwnerStacks++;
+      return v(
         e,
         r,
-        i,
+        l,
         !0,
-        c ? Error("react-stack-top-frame") : D,
-        c ? z(s(e)) : L
+        d ? Error("react-stack-top-frame") : G,
+        d ? z(c(e)) : J
       );
     };
-  }()), O;
+  }()), T;
 }
-process.env.NODE_ENV === "production" ? C.exports = ue() : C.exports = fe();
-var t = C.exports;
-const y = {
+process.env.NODE_ENV === "production" ? D.exports = me() : D.exports = ge();
+var t = D.exports;
+const E = {
   body: { padding: "16px" },
   label: {
     display: "block",
@@ -335,7 +336,7 @@ const y = {
     marginTop: "8px"
   }
 };
-async function pe() {
+async function xe() {
   try {
     const n = (await import("./html2canvas.esm-d2sM-0Wm.mjs")).default;
     return (await n(document.body, { useCORS: !0, logging: !1 })).toDataURL("image/jpeg", 0.7);
@@ -343,7 +344,7 @@ async function pe() {
     return null;
   }
 }
-function xe() {
+function be() {
   return {
     userAgent: navigator.userAgent,
     url: window.location.href,
@@ -352,49 +353,49 @@ function xe() {
     language: navigator.language
   };
 }
-function me({ onSubmitted: n }) {
-  const { config: o } = q(), [a, s] = E(""), [l, u] = E(""), [f, h] = E(!1), [_, p] = E(""), x = async (b) => {
-    var S;
-    if (b.preventDefault(), !!a.trim()) {
-      h(!0), p("");
+function he({ onSubmitted: n }) {
+  const { config: i } = Y(), [o, c] = y(""), [a, s] = y(""), [g, f] = y(!1), [p, b] = y(""), v = async (x) => {
+    var w;
+    if (x.preventDefault(), !(!o.trim() || !i)) {
+      f(!0), b("");
       try {
-        const [m, R] = await Promise.all([
-          pe(),
-          Promise.resolve(xe())
-        ]), v = ((S = o.getUser) == null ? void 0 : S.call(o)) ?? null, w = await fetch(o.endpoint, {
+        const [h, C] = await Promise.all([
+          xe(),
+          Promise.resolve(be())
+        ]), S = ((w = i.getUser) == null ? void 0 : w.call(i)) ?? null, R = await fetch(i.endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            token: o.token,
-            title: a.trim(),
-            description: l.trim() || void 0,
-            browser_info: R,
-            screenshot_base64: m ?? void 0,
-            reporter_name: (v == null ? void 0 : v.name) ?? void 0,
-            reporter_email: (v == null ? void 0 : v.email) ?? void 0
+            token: i.token,
+            title: o.trim(),
+            description: a.trim() || void 0,
+            browser_info: C,
+            screenshot_base64: h ?? void 0,
+            reporter_name: (S == null ? void 0 : S.name) ?? void 0,
+            reporter_email: (S == null ? void 0 : S.email) ?? void 0
           })
         });
-        if (!w.ok) {
-          const P = await w.json().catch(() => ({}));
-          throw new Error(P.error || "Fehler beim Senden");
+        if (!R.ok) {
+          const A = await R.json().catch(() => ({}));
+          throw new Error(A.error || "Fehler beim Senden");
         }
         n();
-      } catch (m) {
-        p(m.message || "Unbekannter Fehler");
+      } catch (h) {
+        b(h.message || "Unbekannter Fehler");
       } finally {
-        h(!1);
+        f(!1);
       }
     }
   };
-  return /* @__PURE__ */ t.jsxs("form", { onSubmit: x, style: y.body, children: [
+  return /* @__PURE__ */ t.jsxs("form", { onSubmit: v, style: E.body, children: [
     /* @__PURE__ */ t.jsxs("div", { style: { marginBottom: "12px" }, children: [
-      /* @__PURE__ */ t.jsx("label", { style: y.label, children: "Was ist passiert? *" }),
+      /* @__PURE__ */ t.jsx("label", { style: E.label, children: "Was ist passiert? *" }),
       /* @__PURE__ */ t.jsx(
         "input",
         {
-          style: y.input,
-          value: a,
-          onChange: (b) => s(b.target.value),
+          style: E.input,
+          value: o,
+          onChange: (x) => c(x.target.value),
           placeholder: "Kurze Zusammenfassung",
           required: !0,
           autoFocus: !0
@@ -402,34 +403,34 @@ function me({ onSubmitted: n }) {
       )
     ] }),
     /* @__PURE__ */ t.jsxs("div", { children: [
-      /* @__PURE__ */ t.jsx("label", { style: y.label, children: "Beschreibung (optional)" }),
+      /* @__PURE__ */ t.jsx("label", { style: E.label, children: "Beschreibung (optional)" }),
       /* @__PURE__ */ t.jsx(
         "textarea",
         {
-          style: y.textarea,
-          value: l,
-          onChange: (b) => u(b.target.value),
+          style: E.textarea,
+          value: a,
+          onChange: (x) => s(x.target.value),
           placeholder: "Was hast du erwartet? Was ist stattdessen passiert?"
         }
       )
     ] }),
-    /* @__PURE__ */ t.jsxs("div", { style: y.meta, children: [
+    /* @__PURE__ */ t.jsxs("div", { style: E.meta, children: [
       /* @__PURE__ */ t.jsx("span", { children: "📸" }),
       /* @__PURE__ */ t.jsx("span", { children: "Screenshot + Browser-Info wird automatisch mitgeschickt" })
     ] }),
-    _ && /* @__PURE__ */ t.jsx("p", { style: y.error, children: _ }),
+    p && /* @__PURE__ */ t.jsx("p", { style: E.error, children: p }),
     /* @__PURE__ */ t.jsx(
       "button",
       {
         type: "submit",
-        style: { ...y.submitBtn, opacity: f ? 0.7 : 1 },
-        disabled: f || !a.trim(),
-        children: f ? "Wird gesendet…" : "Bug melden"
+        style: { ...E.submitBtn, opacity: g ? 0.7 : 1 },
+        disabled: g || !o.trim(),
+        children: g ? "Wird gesendet…" : "Bug melden"
       }
     )
   ] });
 }
-const k = {
+const j = {
   fab: {
     position: "fixed",
     bottom: "24px",
@@ -446,8 +447,8 @@ const k = {
     alignItems: "center",
     justifyContent: "center",
     boxShadow: "0 4px 14px rgba(0,0,0,0.25)",
-    transition: "transform 0.15s ease, box-shadow 0.15s ease",
-    fontSize: "20px"
+    fontSize: "20px",
+    transition: "transform 0.15s ease"
   },
   overlay: {
     position: "fixed",
@@ -493,213 +494,260 @@ const k = {
     padding: "2px"
   }
 };
-function be() {
-  const { open: n, setOpen: o } = q(), [a, s] = E(!1), l = se(null);
-  J(() => {
-    n || s(!1);
+function ye() {
+  const { open: n, setOpen: i } = Y(), [o, c] = y(!1);
+  P(() => {
+    n || c(!1);
   }, [n]);
-  const u = () => {
-    s(!0), setTimeout(() => o(!1), 2e3);
+  const a = () => {
+    c(!0), setTimeout(() => i(!1), 2e3);
   };
   return /* @__PURE__ */ t.jsxs(t.Fragment, { children: [
     /* @__PURE__ */ t.jsx(
       "button",
       {
-        style: k.fab,
-        onClick: () => o(!n),
+        style: j.fab,
+        onClick: () => i(!n),
         title: "Bug melden",
-        onMouseEnter: (f) => {
-          f.currentTarget.style.transform = "scale(1.08)";
+        onMouseEnter: (s) => {
+          s.currentTarget.style.transform = "scale(1.08)";
         },
-        onMouseLeave: (f) => {
-          f.currentTarget.style.transform = "scale(1)";
+        onMouseLeave: (s) => {
+          s.currentTarget.style.transform = "scale(1)";
         },
         children: "🐛"
       }
     ),
     n && /* @__PURE__ */ t.jsxs(t.Fragment, { children: [
-      /* @__PURE__ */ t.jsx("div", { style: k.overlay, onClick: () => o(!1) }),
-      /* @__PURE__ */ t.jsxs("div", { style: k.dialog, ref: l, children: [
-        /* @__PURE__ */ t.jsxs("div", { style: k.header, children: [
-          /* @__PURE__ */ t.jsx("span", { style: k.headerTitle, children: "🐛 Bug melden" }),
-          /* @__PURE__ */ t.jsx("button", { style: k.closeBtn, onClick: () => o(!1), children: "×" })
+      /* @__PURE__ */ t.jsx("div", { style: j.overlay, onClick: () => i(!1) }),
+      /* @__PURE__ */ t.jsxs("div", { style: j.dialog, children: [
+        /* @__PURE__ */ t.jsxs("div", { style: j.header, children: [
+          /* @__PURE__ */ t.jsx("span", { style: j.headerTitle, children: "🐛 Bug melden" }),
+          /* @__PURE__ */ t.jsx("button", { style: j.closeBtn, onClick: () => i(!1), children: "×" })
         ] }),
-        a ? /* @__PURE__ */ t.jsxs("div", { style: { padding: "32px 16px", textAlign: "center" }, children: [
+        o ? /* @__PURE__ */ t.jsxs("div", { style: { padding: "32px 16px", textAlign: "center" }, children: [
           /* @__PURE__ */ t.jsx("div", { style: { fontSize: "32px", marginBottom: "8px" }, children: "✅" }),
           /* @__PURE__ */ t.jsx("p", { style: { fontSize: "14px", color: "#444", margin: 0 }, children: "Danke! Bug wurde gemeldet." })
-        ] }) : /* @__PURE__ */ t.jsx(me, { onSubmitted: u })
+        ] }) : /* @__PURE__ */ t.jsx(he, { onSubmitted: a })
       ] })
     ] })
   ] });
 }
-const G = le(null);
-function q() {
-  const n = ce(G);
-  if (!n) throw new Error("useBugReporter must be used within BugReporterProvider");
-  return n;
-}
-function ye({ config: n, children: o }) {
-  const [a, s] = E(!1), l = n.enabled !== !1;
-  return /* @__PURE__ */ t.jsxs(G.Provider, { value: { config: n, open: a, setOpen: s }, children: [
-    o,
-    l && /* @__PURE__ */ t.jsx(be, {})
-  ] });
-}
-const ge = "https://support.maitrx.ai", he = "tineon_bug_reporter_config", g = {
-  card: {
-    border: "1px solid #e5e7eb",
-    borderRadius: "10px",
-    padding: "20px",
+const ve = "https://support.maitrx.ai", m = {
+  overlay: {
+    position: "fixed",
+    inset: 0,
+    zIndex: 999999,
+    background: "#f9fafb",
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    maxWidth: "460px",
-    background: "#fff"
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "24px"
+  },
+  card: {
+    background: "#fff",
+    borderRadius: "14px",
+    border: "1px solid #e5e7eb",
+    padding: "32px",
+    width: "100%",
+    maxWidth: "480px",
+    boxShadow: "0 4px 24px rgba(0,0,0,0.08)"
+  },
+  logo: {
+    fontSize: "28px",
+    marginBottom: "8px"
   },
   title: {
-    fontSize: "15px",
+    fontSize: "18px",
     fontWeight: 700,
     color: "#111",
     marginBottom: "4px"
   },
   subtitle: {
     fontSize: "13px",
-    color: "#666",
-    marginBottom: "20px"
+    color: "#6b7280",
+    marginBottom: "28px"
   },
   btn: {
-    display: "inline-flex",
+    display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: "8px",
-    padding: "9px 16px",
+    width: "100%",
+    padding: "11px",
     background: "#1a1a1a",
     color: "#fff",
     border: "none",
-    borderRadius: "7px",
-    fontSize: "13px",
+    borderRadius: "8px",
+    fontSize: "14px",
     fontWeight: 600,
     cursor: "pointer",
-    fontFamily: "inherit"
+    fontFamily: "inherit",
+    transition: "opacity 0.15s"
   },
   btnSecondary: {
-    display: "inline-flex",
+    display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: "8px",
-    padding: "9px 16px",
+    width: "100%",
+    padding: "10px",
     background: "#f3f4f6",
-    color: "#111",
+    color: "#374151",
     border: "1px solid #e5e7eb",
-    borderRadius: "7px",
-    fontSize: "13px",
+    borderRadius: "8px",
+    fontSize: "14px",
     fontWeight: 600,
     cursor: "pointer",
     fontFamily: "inherit"
   },
-  row: {
+  btnDanger: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    gap: "12px",
-    marginBottom: "12px"
+    justifyContent: "center",
+    gap: "8px",
+    width: "100%",
+    padding: "10px",
+    background: "#fff",
+    color: "#dc2626",
+    border: "1px solid #fecaca",
+    borderRadius: "8px",
+    fontSize: "14px",
+    fontWeight: 600,
+    cursor: "pointer",
+    fontFamily: "inherit"
   },
   badge: (n) => ({
     display: "inline-flex",
     alignItems: "center",
-    gap: "4px",
-    padding: "3px 8px",
+    gap: "6px",
+    padding: "4px 10px",
     borderRadius: "99px",
-    fontSize: "11px",
+    fontSize: "12px",
     fontWeight: 600,
     background: n ? "#dcfce7" : "#f3f4f6",
-    color: n ? "#166534" : "#555"
+    color: n ? "#166534" : "#6b7280"
   }),
-  toggle: {
-    position: "relative",
-    width: "36px",
-    height: "20px",
-    cursor: "pointer"
+  row: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "20px"
   },
   label: {
-    fontSize: "13px",
-    color: "#555",
+    fontSize: "11px",
+    fontWeight: 600,
+    color: "#9ca3af",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
     marginBottom: "2px"
   },
-  meta: {
-    fontSize: "12px",
-    color: "#999"
+  value: {
+    fontSize: "15px",
+    fontWeight: 600,
+    color: "#111"
   },
   divider: {
     borderTop: "1px solid #f0f0f0",
-    margin: "16px 0"
+    margin: "20px 0"
+  },
+  actions: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px"
   }
 };
-function Se({
-  maitrxUrl: n = ge,
-  storageKey: o = he,
-  onConfigChange: a
-}) {
-  const [s, l] = E(null);
-  J(() => {
-    try {
-      const p = localStorage.getItem(o);
-      if (p) {
-        const x = JSON.parse(p);
-        l(x), a == null || a(x);
-      }
-    } catch {
-    }
-  }, [o]);
-  const u = de((p) => {
-    p ? localStorage.setItem(o, JSON.stringify(p)) : localStorage.removeItem(o), l(p), a == null || a(p);
-  }, [o, a]), f = () => {
-    const p = `${n}/auth/plugin-connect`, x = window.open(p, "maitrx-connect", "width=440,height=600,left=200,top=100"), b = (m) => {
-      var R;
-      ((R = m.data) == null ? void 0 : R.type) === "MAITRX_PLUGIN_CONNECT" && (window.removeEventListener("message", b), x == null || x.close(), u({
-        token: m.data.token,
-        endpoint: m.data.endpoint,
-        productName: m.data.productName,
+function W(n) {
+  n ? localStorage.setItem(L, JSON.stringify(n)) : localStorage.removeItem(L), window.dispatchEvent(new Event(M));
+}
+function we() {
+  const { storedConfig: n, reloadConfig: i } = Y(), [o, c] = y(n);
+  P(() => {
+    c(n);
+  }, [n]);
+  const a = () => {
+    const f = `${ve}/auth/plugin-connect`, p = window.open(f, "maitrx-connect", "width=440,height=600,left=200,top=100"), b = (x) => {
+      var h;
+      if (((h = x.data) == null ? void 0 : h.type) !== "MAITRX_PLUGIN_CONNECT") return;
+      window.removeEventListener("message", b), p == null || p.close();
+      const w = {
+        token: x.data.token,
+        endpoint: x.data.endpoint,
+        productName: x.data.productName,
         enabled: !0
-      }));
+      };
+      W(w), c(w), i();
     };
     window.addEventListener("message", b);
-    const S = setInterval(() => {
-      x != null && x.closed && (clearInterval(S), window.removeEventListener("message", b));
+    const v = setInterval(() => {
+      p != null && p.closed && (clearInterval(v), window.removeEventListener("message", b));
     }, 500);
-  }, h = () => {
-    s && u({ ...s, enabled: !s.enabled });
-  }, _ = () => {
-    u(null);
+  }, s = () => {
+    if (!o) return;
+    const f = { ...o, enabled: !o.enabled };
+    W(f), c(f), i();
+  }, g = () => {
+    W(null), c(null), i();
   };
-  return /* @__PURE__ */ t.jsxs("div", { style: g.card, children: [
-    /* @__PURE__ */ t.jsx("div", { style: g.title, children: "🐛 Bug Reporter" }),
-    /* @__PURE__ */ t.jsx("div", { style: g.subtitle, children: "Verbinde diese App mit Maitrx um Bug-Reports direkt ins interne Tool zu senden." }),
-    s ? /* @__PURE__ */ t.jsxs(t.Fragment, { children: [
-      /* @__PURE__ */ t.jsxs("div", { style: g.row, children: [
+  return /* @__PURE__ */ t.jsx("div", { style: m.overlay, children: /* @__PURE__ */ t.jsxs("div", { style: m.card, children: [
+    /* @__PURE__ */ t.jsx("div", { style: m.logo, children: "🐛" }),
+    /* @__PURE__ */ t.jsx("div", { style: m.title, children: "Bug Reporter" }),
+    /* @__PURE__ */ t.jsx("div", { style: m.subtitle, children: "Verbinde diese App mit Maitrx — gemeldete Bugs landen direkt im internen Support-Tool." }),
+    o ? /* @__PURE__ */ t.jsxs(t.Fragment, { children: [
+      /* @__PURE__ */ t.jsxs("div", { style: m.row, children: [
         /* @__PURE__ */ t.jsxs("div", { children: [
-          /* @__PURE__ */ t.jsx("div", { style: g.label, children: "Verbunden mit" }),
-          /* @__PURE__ */ t.jsx("div", { style: { fontSize: "14px", fontWeight: 600, color: "#111" }, children: s.productName })
+          /* @__PURE__ */ t.jsx("div", { style: m.label, children: "Verbunden mit" }),
+          /* @__PURE__ */ t.jsx("div", { style: m.value, children: o.productName })
         ] }),
-        /* @__PURE__ */ t.jsx("span", { style: g.badge(s.enabled), children: s.enabled ? "● Aktiv" : "○ Inaktiv" })
+        /* @__PURE__ */ t.jsx("span", { style: m.badge(o.enabled), children: o.enabled ? "● Aktiv" : "○ Inaktiv" })
       ] }),
-      /* @__PURE__ */ t.jsx("div", { style: g.divider }),
-      /* @__PURE__ */ t.jsxs("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ t.jsx("button", { style: g.btnSecondary, onClick: h, children: s.enabled ? "Deaktivieren" : "Aktivieren" }),
-        /* @__PURE__ */ t.jsx("button", { style: g.btnSecondary, onClick: f, children: "Neu verbinden" }),
-        /* @__PURE__ */ t.jsx(
-          "button",
-          {
-            style: { ...g.btnSecondary, color: "#dc2626", borderColor: "#fecaca" },
-            onClick: _,
-            children: "Trennen"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ t.jsx("div", { style: { ...g.meta, marginTop: "12px" }, children: "Token wird sicher im localStorage gespeichert." })
-    ] }) : /* @__PURE__ */ t.jsxs("button", { style: g.btn, onClick: f, children: [
-      /* @__PURE__ */ t.jsx("span", { children: "🔗" }),
-      " Mit Maitrx anmelden"
-    ] })
+      /* @__PURE__ */ t.jsx("div", { style: m.divider }),
+      /* @__PURE__ */ t.jsxs("div", { style: m.actions, children: [
+        /* @__PURE__ */ t.jsx("button", { style: m.btnSecondary, onClick: s, children: o.enabled ? "⏸ Deaktivieren" : "▶ Aktivieren" }),
+        /* @__PURE__ */ t.jsx("button", { style: m.btnSecondary, onClick: a, children: "🔄 Neu verbinden" }),
+        /* @__PURE__ */ t.jsx("button", { style: m.btnDanger, onClick: g, children: "✕ Verbindung trennen" })
+      ] })
+    ] }) : /* @__PURE__ */ t.jsx("button", { style: m.btn, onClick: a, children: "🔗 Mit Maitrx anmelden" })
+  ] }) });
+}
+const L = "maitrx_bug_reporter_config", Se = "/bug-reporter", M = "maitrx-config-changed", K = fe(null);
+function Y() {
+  const n = pe(K);
+  if (!n) throw new Error("useBugReporter must be used within BugReporterProvider");
+  return n;
+}
+function Ee() {
+  const [n, i] = y(window.location.pathname);
+  return P(() => {
+    const o = () => i(window.location.pathname), c = window.history.pushState.bind(window.history);
+    window.history.pushState = function(...s) {
+      c(...s), o();
+    };
+    const a = window.history.replaceState.bind(window.history);
+    return window.history.replaceState = function(...s) {
+      a(...s), o();
+    }, window.addEventListener("popstate", o), () => window.removeEventListener("popstate", o);
+  }, []), n;
+}
+function Q() {
+  try {
+    const n = localStorage.getItem(L);
+    return n ? JSON.parse(n) : null;
+  } catch {
+    return null;
+  }
+}
+function je({ children: n, getUser: i }) {
+  const [o, c] = y(!1), [a, s] = y(Q), g = Ee(), f = () => s(Q());
+  P(() => (window.addEventListener(M, f), () => window.removeEventListener(M, f)), []);
+  const p = a ? { endpoint: a.endpoint, token: a.token, enabled: a.enabled, getUser: i } : null, b = g === Se, v = !b && p !== null && p.enabled !== !1;
+  return /* @__PURE__ */ t.jsxs(K.Provider, { value: { config: p, storedConfig: a, open: o, setOpen: c, reloadConfig: f }, children: [
+    n,
+    b && H(/* @__PURE__ */ t.jsx(we, {}), document.body),
+    v && H(/* @__PURE__ */ t.jsx(ye, {}), document.body)
   ] });
 }
 export {
-  ye as BugReporterProvider,
-  Se as BugReporterSettings
+  je as BugReporterProvider
 };
