@@ -16,13 +16,12 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'react-dom/client'],
+      external: (id) => /^react(-dom)?(\/|$)/.test(id),
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'ReactJSXRuntime',
-          'react-dom/client': 'ReactDOMClient',
         },
       },
     },
