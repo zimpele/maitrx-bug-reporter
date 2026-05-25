@@ -93,8 +93,10 @@ bun run build
 git add -A && git commit -m "update" && git push
 ```
 
-In der externen App dann:
+In der externen App die neue Version ziehen:
 
 ```bash
 bun add github:zimpele/maitrx-bug-reporter
 ```
+
+> **Hinweis:** Das Package muss nach jedem Update neu installiert werden, da der `dist/`-Ordner direkt im Repo liegt.
