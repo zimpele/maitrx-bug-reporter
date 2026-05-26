@@ -136,6 +136,7 @@ export function BugReporterSettings({
     const popup = window.open(connectUrl, 'maitrx-connect', 'width=440,height=600,left=200,top=100');
 
     const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== new URL(maitrxUrl).origin) return;
       if (event.data?.type !== 'MAITRX_PLUGIN_CONNECT') return;
       window.removeEventListener('message', handleMessage);
       popup?.close();
